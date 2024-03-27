@@ -28,10 +28,10 @@ class AppServiceProvider extends ServiceProvider
             ], $status);
         });
 
-        Response::macro('error', function (string $error,int $status=400, string $message="") {
+        Response::macro('error', function (string $error,int $status=400) {
             return Response::json([
                 'success' => false,
-                'message' => $$error,
+                'message' => $error,
             ], $status);
         });
     }

@@ -26,7 +26,7 @@ class WebsiteController extends Controller
         $user = User::find($validated['user_id']);
 
         if($user == null){
-             return response()->error("required website is invalid");
+             return response()->error("provided user is invalid");
         }
 
         $subscription = Subscription::firstWhere('user_id', $validated['user_id']);
@@ -34,7 +34,10 @@ class WebsiteController extends Controller
         if($subscription != null){
             return response()->error("you were subscribed before");
        }        
-        $website->users()->save($user);
+       Subscription::create([
+        "website_id"=>$website->id,
+        "user_id"=>$user->id,
+    ]);       
         
         return response()->success($user);
     }

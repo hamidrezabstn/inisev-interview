@@ -22,7 +22,7 @@ class PostController extends Controller
              return response()->error("required website is invalid");
         }
 
-        $post = new Post($validated);
+        $post = new Post($request->safe()->only(['title', 'description']));
         $website->posts()->save($post);
         
         return response()->success($post);

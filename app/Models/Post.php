@@ -10,6 +10,11 @@ class Post extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'title',
+        'description',
+    ];
+
 
     public function website(): BelongsTo
     {

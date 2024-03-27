@@ -1,0 +1,47 @@
+{
+	"info": {
+		"_postman_id": "da989240-7fad-46e0-8748-1ab011f26211",
+		"name": "Inisev",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "9430672"
+	},
+	"item": [
+		{
+			"name": "Create Post",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "website_id",
+							"value": "10",
+							"type": "text"
+						},
+						{
+							"key": "title",
+							"value": "test1",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "test desdsdsd1",
+							"type": "text"
+						}
+					]
+				},
+				"url": "http://127.0.0.1:8000/api/v1/post"
+			},
+			"response": []
+		},
+		{
+			"name": "Subscribe",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
