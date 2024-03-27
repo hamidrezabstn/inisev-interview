@@ -13,7 +13,7 @@ class Website extends Model
 
     public function users(): BelongsToMany
     {
-        return $this->belongsToMany(User::class)->using(Subscription::class);
+        return $this->belongsToMany(User::class,'subscriptions')->using(Subscription::class);
     }
 
     public function posts(): HasMany
