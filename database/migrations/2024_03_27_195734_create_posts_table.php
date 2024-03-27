@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string("title");
             $table->string("description");
+            $table->bigInteger("website_id");
             $table->foreign('website_id')->references('id')->on('websites')->onDelete('cascade');
             $table->timestamps();
         });

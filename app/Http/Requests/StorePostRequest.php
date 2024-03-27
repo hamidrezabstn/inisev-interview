@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class StorePostRequest extends FormRequest
 {
@@ -11,7 +13,7 @@ class StorePostRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +24,13 @@ class StorePostRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'title' => 'required|max:255',
+            'description' => 'required',
         ];
+    }
+
+    public function failedValidation(Validator $validator)
+    {
+    throw new HttpResponseException(response()->error('Validation errors'));
     }
 }
