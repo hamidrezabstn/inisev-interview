@@ -6,7 +6,7 @@ use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class StorePostRequest extends FormRequest
+class StorePostRequest extends BaseFormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,6 +24,7 @@ class StorePostRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'website_id' => 'required|numeric',
             'title' => 'required|max:255',
             'description' => 'required',
         ];

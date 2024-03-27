@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\SubscriptionRequest;
 use App\Models\Post;
+use App\Models\Subscription;
+use App\Models\User;
 use App\Models\Website;
 
 class WebsiteController extends Controller
@@ -13,15 +15,27 @@ class WebsiteController extends Controller
      */
     public function subscribe(SubscriptionRequest $request, int $id)
     {
-       $website = Website::find($id);
+        $website = Website::find($id);
 
-       if($website == null){
-            return response()->error("required website is invalid");
-       }
+        if($website == null){
+             return response()->error("required website is invalid");
+        }
 
-       $validated = $request->safe()->only(['title', 'description']);
-       $post = new Post($validated);
-       $website->posts()->save($post);
-       return response()->success($post);
+        $validated = $request->safe()->only(['user_id']);
+
+        $user = User::find($validated['user_id']);
+
+        if($user == null){
+             return response()->error("required website is invalid");
+        }
+
+        $subscription = Subscription::firstWhere('user_id', $validated['user_id']);
+
+        if($subscription != null){
+            return response()->error("you were subscribed before");
+       }        
+        $website->users()->save($user);
+        
+        return response()->success($user);
     }
 }
