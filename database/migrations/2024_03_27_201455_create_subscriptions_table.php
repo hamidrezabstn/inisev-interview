@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('subscriptions', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger("website_id");
+            $table->bigInteger("user_id");
             $table->foreign('website_id')->references('id')->on('websites')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
